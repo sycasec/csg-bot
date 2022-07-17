@@ -8,17 +8,17 @@ let postWebhook = (req, res) => {
     if (body.object === 'page') {
 
     // Iterate over each entry - there may be multiple if batched
-    body.entry.forEach(function(entry) {
+        body.entry.forEach(function(entry) {
 
-        // Gets the body of the webhook event
-        let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
+            // Gets the body of the webhook event
+            let webhook_event = entry.messaging[0];
+            console.log(webhook_event);
 
-        // Get the sender PSID
-        let sender_psid = webhook_event.sender.id;
-        console.log('Sender PSID: ' + sender_psid);
-        
-    });
+            // Get the sender PSID
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
+            
+        });
 
     // Return a '200 OK' response to all events
     res.status(200).send('EVENT_RECEIVED');
