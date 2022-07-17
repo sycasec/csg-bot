@@ -6,12 +6,16 @@ import bodyParser from 'body-parser';
 
 let app = express();
 
+
+//  config view engine
 viewEngine(app);
-initWebRoutes(app);
 
 //use body-parser to post data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// init all web routes
+initWebRoutes(app);
 
 let port = process.env.PORT || 8080;
 
