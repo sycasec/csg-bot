@@ -1,0 +1,39 @@
+{
+  "name": "csg-bot",
+  "version": "1.0.0",
+  "description": "messenger bot for upcsg facebook page",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sycasec/csg-bot.git"
+  },
+  "keywords": [
+    "messenger",
+    "bot",
+    "for",
+    "upcsg",
+    "facebook",
+    "page"
+  ],
+  "author": "Kyle del Castillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sycasec/csg-bot/issues"
+  },
+  "homepage": "https://github.com/sycasec/csg-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.19"
+  }
+}
