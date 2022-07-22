@@ -64,6 +64,36 @@ let getWebhook = (req, res) => {
   }
 };
 
+function sendWelcome(sender_psid, recieved_message) {
+  let attachment_url = "../public/images/hello_world.png";
+  let response = {
+    "attachment": {
+      "type" : "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "I am your personal assistant, <CSG_BOT_NAME> !",
+            "image_url": attachment_url,
+            "buttons": [
+              {
+                'type': 'postback',
+                'title': 'Get Started',
+                'payload': 'get_started'
+              },
+              {
+                'type': 'postback',
+                'title': 'Help',
+                'payload': 'help'
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+};
+
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -73,7 +103,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Howdy hey guilder! Your message was: ${received_message.text}`
+      "text": `Howdy hey guilder! Natural Language  Your message was: ${received_message.text}`
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -84,7 +114,7 @@ function handleMessage(sender_psid, received_message) {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "File upload recieved! This is a test to see if our buttons are clicky. Try clicking them!",
+            "title": "This is a test response if our buttons are clicky. Try clicking them!",
             "subtitle": "Tap a button to answer.",
             "image_url": attachment_url,
             "buttons": [
@@ -122,6 +152,10 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "You clicked the yes button! The button works fine i guess. That's all for now!" }
   } else if (payload === 'no') {
     response = { "text": "You clicked the no button! The button works fine i guess. That's all for now!" }
+  } else if (payload === 'get_started') {
+    response = { "text": "That's all for now guilder, ciao!" }
+  } else if (payload === 'help') {
+    response = { "text": "I am your personal assistant, <CSG_BOT_NAME> ! I can help you with the following: \n 1. Get Started \n 2. Help \nPlease take note that the bot is in beta, and will be unable to provide any useful assistance. Thanks!" }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
