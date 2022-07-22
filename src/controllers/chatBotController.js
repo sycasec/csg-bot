@@ -25,6 +25,8 @@ let postWebhook = (req, res) => {
               handleMessage(sender_psid, webhook_event.message);
             } else if (webhook_event.postback) {
               handlePostback(sender_psid, webhook_event.postback);
+            } else {
+              sendWelcome(sender_psid);
             }
             
         });
@@ -64,7 +66,7 @@ let getWebhook = (req, res) => {
   }
 };
 
-function sendWelcome(sender_psid, recieved_message) {
+function sendWelcome(sender_psid) {
   let attachment_url = "../public/images/hello_world.png";
   let response = {
     "attachment": {
@@ -103,7 +105,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `Howdy hey guilder! Natural Language  Your message was: ${received_message.text}`
+      "text": `Howdy hey guilder! Natural Language Processing is not yet supported. Your message was: ${received_message.text}`
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -133,6 +135,8 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
+
+    callSendAPI(sender_psid, response);
   }
   
   // Sends the response message
