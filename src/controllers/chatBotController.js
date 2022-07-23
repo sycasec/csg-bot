@@ -140,7 +140,7 @@ function handleMessage(sender_psid, received_message) {
               {
                 "type": "postback",
                 "title": "Yes Button",
-                "payload": "yes"
+                "payload": "get_started"
               },
               {
                 "type": "postback",
