@@ -96,12 +96,12 @@ function handleGetStarted() {
             "buttons": [
               {
                 'type': 'postback',
-                'title': 'Get Started',
-                'payload': 'get_started'
+                'title': 'I have some questions',
+                'payload': 'questions'
               },
               {
                 'type': 'postback',
-                'title': 'Help',
+                'title': '>man csg_bot',
                 'payload': 'help'
               }
             ]
@@ -172,9 +172,11 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'no') {
     response = { "text": "You clicked the no button! The button works fine i guess. That's all for now!" }
   } else if (payload === 'get_started') {
-    response = { "text": "That's all for now guilder, ciao!" }
-  } else if (payload === 'get_started') {
     response = handleGetStarted();
+  } else if (payload === 'questions') {
+    response = { "text": "The bot is in beta, and cannot handle your queries yet!"}
+  } else if (payload === 'help') {
+    response = { "text": "CSG-BOT v0.18 is a bot that can be used to interact with CSG.\nIt is still in beta, and cannot handle your queries yet!\nIf you wish to assist with development, conctact your friendly neighborhood UPCSG officers."}
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
