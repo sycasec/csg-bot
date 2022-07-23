@@ -56,7 +56,7 @@ let getWebhook = (req, res) => {
       // Responds with the challenge token from the request
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
-      getStarted();
+      
     
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
@@ -73,17 +73,22 @@ function getStarted() {
   }
 
   request({
-    "uri": "https://graph.facebook.com/v14.0/me/messenger_profile",
+    "uri": "https://graph.facebook.com/v14.0/me/messages",
     "qs": { "access_token": process.env.PAGE_TOKEN },
     "method": "POST",
     "json": request_body
-
-  })
+  }, (err, res, body) => {
+    if (!err) {
+      console.log('message sent!, my message: ${response}');
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
 }
 
 
 function handleGetStarted() {
-  let attachment_url = "../public/images/hello_world.png";
+  let attachment_url = "https://csg-bot.herokuapp.com/images/hello_world.png";
   let request_body = {
     "attachment": {
       "type" : "template",
