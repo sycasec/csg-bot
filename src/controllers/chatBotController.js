@@ -25,8 +25,6 @@ let postWebhook = (req, res) => {
               handleMessage(sender_psid, webhook_event.message);
             } else if (webhook_event.postback) {
               handlePostback(sender_psid, webhook_event.postback);
-            } else {
-              sendWelcome(sender_psid);
             }
             
         });
@@ -58,6 +56,7 @@ let getWebhook = (req, res) => {
       // Responds with the challenge token from the request
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
+      getStarted();
     
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
@@ -66,9 +65,26 @@ let getWebhook = (req, res) => {
   }
 };
 
-function sendWelcome(sender_psid) {
+function getStarted() {
+  let request_body = {
+    "get_started": {
+      "payload": "get_started"
+    }
+  }
+
+  request({
+    "uri": "https://graph.facebook.com/v14.0/me/messenger_profile",
+    "qs": { "access_token": process.env.PAGE_TOKEN },
+    "method": "POST",
+    "json": request_body
+
+  })
+}
+
+
+function handleGetStarted() {
   let attachment_url = "../public/images/hello_world.png";
-  let response = {
+  let request_body = {
     "attachment": {
       "type" : "template",
       "payload": {
@@ -93,7 +109,8 @@ function sendWelcome(sender_psid) {
         ]
       }
     }
-  }
+  } 
+  return request_body;
 };
 
 // Handles messages events
@@ -136,12 +153,10 @@ function handleMessage(sender_psid, received_message) {
       }
     }
 
-    callSendAPI(sender_psid, response);
+    
   }
-  
   // Sends the response message
   callSendAPI(sender_psid, response); 
-
 }
 
 // Handles messaging_postbacks events
@@ -158,8 +173,8 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "You clicked the no button! The button works fine i guess. That's all for now!" }
   } else if (payload === 'get_started') {
     response = { "text": "That's all for now guilder, ciao!" }
-  } else if (payload === 'help') {
-    response = { "text": "I am your personal assistant, <CSG_BOT_NAME> ! I can help you with the following: \n 1. Get Started \n 2. Help \nPlease take note that the bot is in beta, and will be unable to provide any useful assistance. Thanks!" }
+  } else if (payload === 'get_started') {
+    response = handleGetStarted();
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
@@ -177,7 +192,7 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v6.0/me/messages",
+    "uri": "https://graph.facebook.com/v14.0/me/messages",
     "qs": { "access_token": process.env.PAGE_TOKEN },
     "method": "POST",
     "json": request_body
@@ -193,5 +208,5 @@ function callSendAPI(sender_psid, response) {
 
 module.exports = {
     postWebhook: postWebhook,
-    getWebhook: getWebhook
+    getWebhook: getWebhook,
 };
