@@ -45,9 +45,10 @@ let postWebhook = (req, res) => {
 };
 
 let getWebhook = (req, res) => {
-    // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = process.env.MSG_TOKEN
-    
+  // Your verify token. Should be a random string.
+  let VERIFY_TOKEN = process.env.MSG_TOKEN;  
+
+
   // Parse the query params
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -71,8 +72,11 @@ let getWebhook = (req, res) => {
   }
 };
 
+function firstTrait(nlp, name) {
+  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+}
 
-function handleMessageEnt(received_message) {
+let handleMessageEnt = (received_message) => {
   let entitiesArr = ["wit$greetings", "wit$thanks", "wit$bye"];
   let entityChosen = "";
   let data = {};
@@ -90,7 +94,7 @@ function handleMessageEnt(received_message) {
 };
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+let handleMessage = async (sender_psid, received_message) => {
   let response;
 
   // handle text message with NLP  YOU WERE HERE
