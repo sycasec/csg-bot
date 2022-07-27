@@ -6,7 +6,7 @@ let getHomepage = (req, res) => {
     return res.render("homepage.ejs");
 };
 
-let setupWelcome = (req, res) => {
+let setupWelcome = async (req, res) => {
     try {
         await homepageServices.setupGreeting(PAGE_ACCESS_TOKEN)
         return res.status(200).json({ "message": "OK"});
