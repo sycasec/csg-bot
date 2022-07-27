@@ -81,7 +81,10 @@ let sendUserWelcome = (sender_psid) => {
                 }
             };
 
+            await typingMimicry(sender_psid, 0);
             await sendMessage(sender_psid, response1);
+            await typingMimicry(sender_psid, 0);
+            await sendMessage(sender_psid, response2);
 
             resolve("postback: GET_STARTED handled!")
 
