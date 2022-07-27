@@ -1,5 +1,11 @@
 require('dotenv').config();
 import request from 'request';
+import chatBotServices from '../services/chatBotServices';
+import homepageServices from '../services/homepageServices';
+
+
+const VERIFY_TOKEN = process.env.MSG_TOKEN;
+const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
@@ -65,126 +71,70 @@ let getWebhook = (req, res) => {
   }
 };
 
-function getStarted() {
-  let request_body = {
-    "get_started": {
-      "payload": "get_started"
-    }
-  }
 
-  request({
-    "uri": "https://graph.facebook.com/v14.0/me/messages",
-    "qs": { "access_token": process.env.PAGE_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!, my message: ${response}');
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  }); 
-}
+function handleMessageEnt(received_message) {
+  let entitiesArr = ["wit$greetings", "wit$thanks", "wit$bye"];
+  let entityChosen = "";
+  let data = {};
 
-
-function handleGetStarted() {
-  let attachment_url = "https://csg-bot.herokuapp.com/images/hello_world.png";
-  let request_body = {
-    "attachment": {
-      "type" : "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": [
-          {
-            "title": "I am your personal assistant, <CSG_BOT_NAME> !",
-            "image_url": attachment_url,
-            "buttons": [
-              {
-                'type': 'postback',
-                'title': 'I have some questions',
-                'payload': 'questions'
-              },
-              {
-                'type': 'postback',
-                'title': '>man csg_bot',
-                'payload': 'help'
-              }
-            ]
-          }
-        ]
-      }
+  entitiesArr.forEach((name) => {
+    let entity = firstTrait(received_message.nlp, name.trim());
+    if (entity && entity.confidence > 0.8){
+      entityChosen = name;
+      data.value = entity.value;
     }
-  } 
-  return request_body;
+  });
+
+  data.name = entityChosen;
+  return data;
 };
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  // Check if the message contains text
-  if (received_message.text) {    
+  // handle text message with NLP  YOU WERE HERE
+  let entity = handleMessageEnt(received_message);
 
-    // Create the payload for a basic text message
-    response = {
-      "text": `Howdy hey guilder! Natural Language Processing is not yet supported. Your message was: ${received_message.text}`
-    }
-  } else if (received_message.attachments) {
-    // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "This is a test response if our buttons are clicky. Try clicking them!",
-            "subtitle": "Tap a button to answer.",
-            "image_url": attachment_url,
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Yes Button",
-                "payload": "get_started"
-              },
-              {
-                "type": "postback",
-                "title": "No Button",
-                "payload": "no"
-              }
-            ]
-          }]
-        }
-      }
-    }
+  await chatBotServices.typingMimicry(sender_psid, 0);
+  await chatBotServices.typingMimicry(sender_psid, 1);
 
-    
+  if (entity.name === "wit$greetings") {
+    await homepageServices.sendGreetingResponse(sender_psid);
+  } else if (entity.name === "wit$thanks") {
+    await homepageServices.sendThanksResponse(sender_psid);
+  } else if (entity.name === "wit$bye") {
+    await homepageServices.sendByeResponse(sender_psid);
+  } else {
+    await chatBotServices.sendDefaultMessage(sender_psid);
   }
+
   // Sends the response message
   callSendAPI(sender_psid, response); 
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+let handlePostback = async (sender_psid, received_postback) => {
   let response;
-  
   // Get the payload for the postback
   let payload = received_postback.payload;
-
   // Set the response based on the postback payload
-  if (payload === 'yes') {
-    response = { "text": "You clicked the yes button! The button works fine i guess. That's all for now!" }
-  } else if (payload === 'no') {
-    response = { "text": "You clicked the no button! The button works fine i guess. That's all for now!" }
-  } else if (payload === 'get_started') {
-    response = handleGetStarted();
-  } else if (payload === 'questions') {
-    response = { "text": "The bot is in beta, and cannot handle your queries yet!"}
-  } else if (payload === 'help') {
-    response = { "text": "CSG-BOT v0.18 is a bot that can be used to interact with CSG.\nIt is still in beta, and cannot handle your queries yet!\nIf you wish to assist with development, conctact your friendly neighborhood UPCSG officers."}
+
+  await chatBotServices.typingMimicry(sender_psid, 1);
+  switch(payload) {
+    case "GET_STARTED":
+    case "RESTART_CONVERSATION":
+      await chatBotServices.sendUserWelcome(sender_psid);
+    case "USER_HELP":
+      await homepageServices.sendHelp(sender_psid);
+    case "USER_FAQ":
+      await chatBotServices.sendFAQ(sender_psid);
+    case "USER_CONCERNS":
+      await chatBotServices.sendConcerns(sender_psid);
+    default: 
+      console.log("Uncaught error in switch case payload: " + payload);
   }
-  // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
+
 }
 
 // Sends response messages via the Send API
@@ -200,12 +150,12 @@ function callSendAPI(sender_psid, response) {
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v14.0/me/messages",
-    "qs": { "access_token": process.env.PAGE_TOKEN },
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log('message sent!, my message: ${response}');
+      console.log('message sent!, my message: ' + response);
     } else {
       console.error("Unable to send message:" + err);
     }
