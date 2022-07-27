@@ -80,6 +80,7 @@ let handleMessageEnt = (received_message) => {
   let entitiesArr = ["wit$greetings", "wit$thanks", "wit$bye"];
   let entityChosen = "";
   let data = {};
+  console.log("received_message: " + JSON.stringify(received_message) + "\nmsg_entity: " + JSON.stringify(received_message.nlp));
 
   entitiesArr.forEach((name) => {
     let entity = firstTrait(received_message.nlp, name.trim());
