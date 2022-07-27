@@ -96,6 +96,7 @@ let sendGreetingResponse = (sender_psid) => {
             await chatBotServices.sendMessage(sender_psid, response1);
             await chatBotServices.typingMimicry(sender_psid, 0);
             await chatBotServices.sendMessage(sender_psid, response2);
+            await chatBotServices.typingMimicry(sender_psid, 1);
 
             resolve("greeting response done!");
 
@@ -147,6 +148,7 @@ let sendThanksResponse = (sender_psid) => {
 
             await chatBotServices.typingMimicry(sender_psid, 0);
             await chatBotServices.sendMessage(sender_psid, response);
+            await chatBotServices.typingMimicry(sender_psid, 1);
 
             resolve("thanks response done!");
 
@@ -195,6 +197,7 @@ let sendByeResponse = (sender_psid) => {
 
             await chatBotServices.typingMimicry(sender_psid, 0);
             await chatBotServices.sendMessage(sender_psid, response);
+            await chatBotServices.typingMimicry(sender_psid, 1);
 
             resolve("bye response done!");
 

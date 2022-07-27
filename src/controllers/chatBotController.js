@@ -103,7 +103,7 @@ let handleMessage = async (sender_psid, received_message) => {
   let entity = handleMessageEnt(received_message);
 
   await chatBotServices.typingMimicry(sender_psid, 0);
-  await chatBotServices.typingMimicry(sender_psid, 1);
+  await chatBotServices.typingMimicry(sender_psid, 2);
 
   if (entity.name === "wit$greetings") {
     await homepageServices.sendGreetingResponse(sender_psid);

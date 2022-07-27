@@ -161,7 +161,11 @@ let sendMessage = (sender_psid, response) => {
 
 // mimic mark seen and typing
 let typingMimicry = (sender_psid, action) => {
-    let bot_action = action == 0 ? "typing_on" : "mark_seen";
+
+    let bot_action;
+    if (action == 0) { bot_action = "typing_on"; }
+    else if (action == 1) { bot_action = "typing_off"; }
+    else if (action == 2) { bot_action = "mark_seen"; }
 
     return new Promise((resolve, reject) => {
         try {
