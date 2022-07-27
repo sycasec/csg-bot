@@ -240,7 +240,7 @@ let sendHelp = (sender_psid) => { //sends help message to user.
             };
 
             // add future help menu items here.
-            let responses = [response1, response2];
+            let responses = [response1, response2, response3];
 
             for(let i = 0, len = responses.length; i < len; i++){
                 chatBotServices.typingMimicry(sender_psid, 0);
