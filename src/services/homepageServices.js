@@ -128,7 +128,7 @@ let sendThanksResponse = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": random_phrase,
+                        "text": random_phrase + "\n\n In case you have some questions or concerns: ",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -176,7 +176,7 @@ let sendByeResponse = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": random_phrase,
+                        "text": random_phrase + "\n\n In case you have some questions or concerns: ",
                         "buttons": [
                             {
                                 "type": "postback",
