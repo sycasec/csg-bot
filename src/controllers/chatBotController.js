@@ -48,7 +48,6 @@ let getWebhook = (req, res) => {
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = process.env.MSG_TOKEN;  
 
-
   // Parse the query params
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -70,28 +69,6 @@ let getWebhook = (req, res) => {
       res.sendStatus(403);      
     }
   }
-};
-
-function firstTrait(nlp, name) {
-  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-}
-
-let handleMessageEnt = (received_message) => {
-  let entitiesArr = ["wit$greetings", "wit$thanks", "wit$bye"];
-  let entityChosen = "";
-  let data = {};
-  console.log("received_message: " + JSON.stringify(received_message) + "\nmsg_entity: " + JSON.stringify(received_message.nlp));
-
-  entitiesArr.forEach((name) => {
-    let entity = firstTrait(received_message.nlp, name.trim());
-    if (entity && entity.confidence > 0.8){
-      entityChosen = name;
-      data.value = entity.value;
-    }
-  });
-
-  data.name = entityChosen;
-  return data;
 };
 
 // Handles messages events
@@ -116,6 +93,25 @@ let handleMessage = async (sender_psid, received_message) => {
   }
 
 }
+
+let handleMessageEnt = (received_message) => {
+  let entitiesArr = ["wit$greetings", "wit$thanks", "wit$bye"];
+  let entityChosen = "";
+  let data = {};
+  console.log("received_message: " + JSON.stringify(received_message) + "\nmsg_entity: " + JSON.stringify(received_message.nlp));
+
+  entitiesArr.forEach((name) => {
+    let entity = firstTrait(received_message.nlp, name.trim());
+    if (entity && entity.confidence > 0.8){
+      entityChosen = name;
+      data.value = entity.value;
+    }
+  });
+
+  data.name = entityChosen;
+  return data;
+};
+
 
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
@@ -143,6 +139,10 @@ let handlePostback = async (sender_psid, received_postback) => {
       console.log("Uncaught error in switch case payload: " + payload);
   }
 
+}
+
+function firstTrait(nlp, name) {
+  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
 
 // Sends response messages via the Send API
