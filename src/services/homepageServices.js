@@ -217,6 +217,28 @@ let sendHelp = (sender_psid) => { //sends help message to user.
                 "text": "Please like and follow our page for the latest updates on CSG activities!"
             };
 
+            let response3 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": "What would you like to do next?",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "I have some questions",
+                                "payload": "USER_FAQ"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "I have some concerns",
+                                "payload": "USER_CONCERNS"
+                            }
+                        ]
+                    }
+                }
+            };
+
             // add future help menu items here.
             let responses = [response1, response2];
 
