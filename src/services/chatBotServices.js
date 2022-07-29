@@ -145,6 +145,7 @@ let sendOldiesFAQ = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
+                        "text": "Oldies FAQ",
                         "buttons": [
                             {
                                 "type": "postback",
