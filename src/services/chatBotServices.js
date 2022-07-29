@@ -159,11 +159,6 @@ let sendOldiesFAQ = (sender_psid) => {
                             },
                             {
                                 "type": "postback",
-                                "title": "Enlistment == Enrollment ? 🤔",
-                                "payload": "OLDIES_ENLISTMENT"
-                            },
-                            {
-                                "type": "postback",
                                 "title": "🔙 back",
                                 "payload": "USER_FAQ"
                             }
