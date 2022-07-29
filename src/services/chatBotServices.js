@@ -125,7 +125,7 @@ let sendFAQ = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
-            
+            await sendMessage(sender_psid, {"text" : "debug: sendFAQ"});
             await sendMessage(sender_psid, response);
 
             resolve("USER_FAQ handled!");
