@@ -184,6 +184,7 @@ let sendOldiesFAQ = (sender_psid) => {
             await typingMimicry(sender_psid, 0);
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
+            
             resolve("oldies faq handled");
         } catch (e) {
             reject(e);
