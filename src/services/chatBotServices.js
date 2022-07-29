@@ -32,7 +32,7 @@ let sendDefaultMessage = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -85,10 +85,10 @@ let sendUserWelcome = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response1);
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response2);
             await typingMimicry(sender_psid, 1);
 
@@ -125,7 +125,7 @@ let sendFAQ = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -238,7 +238,7 @@ let sendOldiesFAQAnswers = (sender_psid, answer) => {
             }
 
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -277,7 +277,7 @@ let sendFreshieFAQ = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -325,7 +325,7 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
             }
 
             await typingMimicry(sender_psid, 0);
-            await delay (1000);
+            
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
