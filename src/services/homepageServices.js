@@ -25,18 +25,21 @@ let setupGreeting = (PAGE_ACCESS_TOKEN) => { // set up get started and persisten
                             },
                             {
                                 "type": "web_url",
+                                "title": "Online Enrollment Guide",
                                 "url": "https://our.upcebu.edu.ph/information/online-enrollment-guide/",
-                                "title": "Online Enrollment Guide"
+                                "webview_height_ratio": "full"
                             },
                             {
                                 "type": "web_url",
+                                "title": "SAIS Pre-enlistment Guide",
                                 "url": "https://drive.google.com/file/d/1CdwWkYjgDeP6YWkMjWw-SHRvAdvsoeOo/view",
-                                "title": "SAIS Pre-enlistment Guide"
+                                "webview_height_ratio": "full"
                             },
                             {
                                 "type": "web_url",
+                                "title": "University Registrar FAQs",
                                 "url": "https://our.upcebu.edu.ph/up-college-admissions-2022/frequently-asked-questions-faq-2022/",
-                                "title": "University Registrar FAQs"
+                                "webview_height_ratio": "full"
                             },
                             {
                                 "type": "postback",
