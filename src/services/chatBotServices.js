@@ -2,6 +2,7 @@ import request from "request";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
+let delay = (ms) => { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 // send a default message to the user
 let sendDefaultMessage = (sender_psid) => {
@@ -31,6 +32,7 @@ let sendDefaultMessage = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
+            await delay (1000);
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -83,8 +85,10 @@ let sendUserWelcome = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
+            await delay (1000);
             await sendMessage(sender_psid, response1);
             await typingMimicry(sender_psid, 0);
+            await delay (1000);
             await sendMessage(sender_psid, response2);
             await typingMimicry(sender_psid, 1);
 
@@ -121,6 +125,7 @@ let sendFAQ = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
+            await delay (1000);
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -131,6 +136,119 @@ let sendFAQ = (sender_psid) => {
         }
     });
 };
+
+let sendOldiesFAQ = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Enrollment Dates? 📅",
+                                "payload": "OLDIES_ENROLLMENT_DATES"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Enrollment Forms? 📄",
+                                "payload": "OLDIES_ENROLLMENT_FORMS"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Enlistment == Enrollment ? 🤔",
+                                "payload": "OLDIES_ENLISTMENT"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Couldn't Pre-enlist 😞",
+                                "payload": "OLDIES_COULD_NOT_ENLIST"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Check Enrollment Status? 📋",
+                                "payload": "OLDIES_ENROLLMENT_STATUS"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "🔙 back",
+                                "payload": "USER_FAQ"
+                            }
+                        ]
+                    }
+                }
+            }
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendOldiesFAQAnswers = (sender_psid, answer) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let text_responses = [
+                "📌 Aug 1, Mon: 2019- earlier\n" +
+                "📌 Aug 2, Tue: 2020-\n" +
+                "📌 Aug 3, Wed | 2021-\n" +
+                "📌 Aug 4, Thu | ALL\n" +
+                "📌 Aug 5, Fri | ALL\n\n" +
+                "--------------------\n"+
+                "📌 Aug 8-12, Advanced First Year Registration\n\n" + 
+                "📌 Aug 30: Registration Period for Freshies, Graduating, and Graduate Students\n\n" +
+                "📌 Aug 31 - Sep 2: All Undergrads and Grad Students\n\n" +
+                "📌 Sep 1 - Sep 2: All students + Cross-reg, Non-Degree, Special Students",
+
+                "No forms nor further preparations are needed as long as you have pre-enlisted and resolved your Form 5A ineligibilities. 😊",
+
+                "True. The pre-enlisted/enrolled students have already been enrolled automatically. The 'Enrolled' tag will appear under Holds when a student checks their Student Center in SAIS. 😊",
+
+                "That's okay. Students who want to enroll but have not pre-enrolled must speak with their College or Program Adviser. The student enrollment for the adviser's classes will be handled by the adviser. 😊",
+
+                "Students may check their enrollment status via the Student Center in SAIS. 😊"
+            ];
+
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": text_responses[answer],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "I still have some questions 🤔",
+                                "payload": "USER_FAQ"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "I have some concerns",
+                                "payload": "USER_CONCERNS"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "🔙 back",
+                                "payload": "OLDIES_FAQ"
+                            }
+                        ]
+                    }
+                }
+            }
+
+            await typingMimicry(sender_psid, 0);
+            await delay (1000);
+            await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
+
+            resolve("OLDIES_FAQ_ANSWER handled!");
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
 
 let sendFreshieFAQ = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
@@ -159,6 +277,7 @@ let sendFreshieFAQ = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
+            await delay (1000);
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -206,6 +325,7 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
             }
 
             await typingMimicry(sender_psid, 0);
+            await delay (1000);
             await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
 
@@ -302,11 +422,14 @@ let typingMimicry = (sender_psid, action) => {
 } 
 
 module.exports = {
+    delay: delay,
     sendDefaultMessage: sendDefaultMessage,
     sendUserWelcome: sendUserWelcome,
     sendFAQ: sendFAQ,
     sendFreshieFAQ: sendFreshieFAQ,
     sendFreshieFAQAnswers: sendFreshieFAQAnswers,
+    sendOldiesFAQ: sendOldiesFAQ,
+    sendOldiesFAQAnswers: sendOldiesFAQAnswers,
     sendConcerns: sendConcerns,
     sendMessage: sendMessage,
     typingMimicry: typingMimicry

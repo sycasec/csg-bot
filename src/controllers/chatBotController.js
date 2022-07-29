@@ -137,6 +137,24 @@ let handlePostback = async (sender_psid, received_postback) => {
     case "USER_FAQ":
       await chatBotServices.sendFAQ(sender_psid);
       break;
+    case "OLDIES_FAQ":
+      await chatBotServices.sendOldiesFAQ(sender_psid);
+      break;
+    case "OLDIES_ENROLLMENT_DATES":
+      await chatBotServices.sendOldiesFAQAnswers(sender_psid, 0);
+      break;
+    case "OLDIES_ENROLLMENT_FORMS":
+      await chatBotServices.sendOldiesFAQAnswers(sender_psid, 1);
+      break;
+    case "OLDIES_ENLISTMENT":
+      await chatBotServices.sendOldiesFAQAnswers(sender_psid, 2);
+      break;
+    case "OLDIES_COULD_NOT_ENLIST":
+      await chatBotServices.sendOldiesFAQAnswers(sender_psid, 3);
+      break;
+    case "OLDIES_ENROLLMENT_STATUS":
+      await chatBotServices.sendOldiesFAQAnswers(sender_psid, 4);
+      break;
     case "FRESHIE_FAQ":
       await chatBotServices.sendFreshieFAQ(sender_psid);
       break;
