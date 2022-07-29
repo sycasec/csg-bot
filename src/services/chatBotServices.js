@@ -17,7 +17,7 @@ let sendDefaultMessage = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I have some questions",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {
@@ -32,6 +32,7 @@ let sendDefaultMessage = (sender_psid) => {
 
             await typingMimicry(sender_psid, 0);
             await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
 
             resolve("default message sent!")
 
@@ -61,7 +62,7 @@ let sendUserWelcome = (sender_psid) => {
                             "buttons": [
                                     {
                                         'type': 'postback',
-                                        'title': 'I have some questions',
+                                        'title': 'I have some questions 🤔',
                                         'payload': 'USER_FAQ'
                                     },
                                     {
@@ -71,7 +72,7 @@ let sendUserWelcome = (sender_psid) => {
                                     },
                                     {
                                         'type': 'postback',
-                                        'title': '>man csg_bot',
+                                        'title': '>man csg_bot 🤖',
                                         'payload': 'USER_HELP'
                                     }
                                 ]
@@ -85,6 +86,7 @@ let sendUserWelcome = (sender_psid) => {
             await sendMessage(sender_psid, response1);
             await typingMimicry(sender_psid, 0);
             await sendMessage(sender_psid, response2);
+            await typingMimicry(sender_psid, 1);
 
             resolve("postback: GET_STARTED handled!")
 
@@ -97,10 +99,30 @@ let sendUserWelcome = (sender_psid) => {
 let sendFAQ = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = {"text": "FAQs are coming soon! (no faqs given!)"};
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Freshie?",
+                                "payload": "FRESHIE_FAQ"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Fossil 🦖",
+                                "payload": "OLDIES_FAQ"
+                            }
+                        ]
+                    }
+                }
+            };
 
             await typingMimicry(sender_psid, 0);
             await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
 
             resolve("USER_FAQ handled!");
 
@@ -109,6 +131,91 @@ let sendFAQ = (sender_psid) => {
         }
     });
 };
+
+let sendFreshieFAQ = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": "Freshie FAQ",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Couldn't do advanced registration 😞",
+                                "payload": "FRESHIE_ADVANCED_REG"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "FORM5 == FORM5A ?",
+                                "payload": "FRESHIE_FORM5"
+                            }
+                        ]
+                    }
+                }
+            };
+
+            await typingMimicry(sender_psid, 0);
+            await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
+
+            resolve("FRESHIE_FAQ handled!");
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+let sendFreshieFAQAnswers = (sender_psid, answer) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let text_responses = [
+                "That's okay, you can still register on August 30 up until September 2, 2022 for this A.Y. 😊",
+                "FORM 5A is a document that you can acquire and print from sais.up.edu.ph that lists all your enlisted classes for the term. It includes your class schedule, room assignment, instructors, and units enrolled. It also serves as your TEMPORARY FORM 5 prior to enrollment. 😊",
+            ];
+
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": text_responses[answer],
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "I still have some questions 🤔",
+                                "payload": "USER_FAQ"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "I have some concerns",
+                                "payload": "USER_CONCERNS"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "🔙 back",
+                                "payload": "FRESHIE_FAQ"
+                            }
+                        ]
+                    }
+                }
+            }
+
+            await typingMimicry(sender_psid, 0);
+            await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
+
+            resolve("FRESHIE_FAQ_ANSWER handled!");
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
 
 let sendConcerns = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
@@ -198,6 +305,8 @@ module.exports = {
     sendDefaultMessage: sendDefaultMessage,
     sendUserWelcome: sendUserWelcome,
     sendFAQ: sendFAQ,
+    sendFreshieFAQ: sendFreshieFAQ,
+    sendFreshieFAQAnswers: sendFreshieFAQAnswers,
     sendConcerns: sendConcerns,
     sendMessage: sendMessage,
     typingMimicry: typingMimicry
