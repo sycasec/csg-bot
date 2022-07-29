@@ -145,21 +145,21 @@ let sendOldiesFAQ = (sender_psid, action) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Oldies FAQ",
+                        "text": "❓ Oldies FAQ ❓",
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Enrollment Dates? 📅",
+                                "title": "📅 Enrollment Dates?",
                                 "payload": "OLDIES_ENROLLMENT_DATES"
                             },
                             {
                                 "type": "postback",
-                                "title": "Enrollment Forms? 📄",
+                                "title": "📄 Enrollment Forms?",
                                 "payload": "OLDIES_ENROLLMENT_FORMS"
                             },
                             {
                                 "type": "postback",
-                                "title": "more",
+                                "title": "more ➡️",
                                 "payload": "OLDIES_MORE_FAQ"
                             }
                         ]
@@ -172,11 +172,11 @@ let sendOldiesFAQ = (sender_psid, action) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Oldies more FAQ",
+                        "text": "❓ Oldies more FAQ ❓",
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Enlistment == Enrollment ? 🤔",
+                                "title": "🤔 Enlistment == Enrollment ?",
                                 "payload": "OLDIES_ENLISTMENT"
                             },
                             {
@@ -281,7 +281,7 @@ let sendFreshieFAQ = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Freshies FAQ",
+                        "text": "❓ Freshies FAQ ❓",
                         "buttons": [
                             {
                                 "type": "postback",
