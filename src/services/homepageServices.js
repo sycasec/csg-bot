@@ -24,6 +24,21 @@ let setupGreeting = (PAGE_ACCESS_TOKEN) => { // set up get started and persisten
                                 "payload": "USER_HELP"
                             },
                             {
+                                "type": "web_url",
+                                "url": "https://our.upcebu.edu.ph/information/online-enrollment-guide/",
+                                "title": "Online Enrollment Guide"
+                            },
+                            {
+                                "type": "web_url",
+                                "url": "https://drive.google.com/file/d/1CdwWkYjgDeP6YWkMjWw-SHRvAdvsoeOo/view",
+                                "title": "SAIS Pre-enlistment Guide"
+                            },
+                            {
+                                "type": "web_url",
+                                "url": "https://our.upcebu.edu.ph/up-college-admissions-2022/frequently-asked-questions-faq-2022/",
+                                "title": "University Registrar FAQs"
+                            },
+                            {
                                 "type": "postback",
                                 "title": "Restart this conversation",
                                 "payload": "RESTART_CONVERSATION"
@@ -79,7 +94,7 @@ let sendGreetingResponse = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I have some questions",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {
@@ -133,7 +148,7 @@ let sendThanksResponse = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I have some questions",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {
@@ -182,7 +197,7 @@ let sendByeResponse = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I have some questions",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {
@@ -214,7 +229,8 @@ let sendHelp = (sender_psid) => { //sends help message to user.
                 "text": "Hello Guilder! I'm $CSG-BOT-NAME, I'm here to help you with your CSG related queries.\n\n" +
                 "I can help you with the following:\n" +
                 "1. Answer some of FAQ's\n" +
-                "2. Notify the officers about some of your concerns. (in development)\n"
+                "2. Notify the officers about some of your concerns. (in development)\n" +
+                "3. You can check useful links in the menu! (it should look like three stacked bars)\n"
             };
             let response2 = {
                 "text": "Please like and follow our page for the latest updates on CSG activities!"
@@ -229,7 +245,7 @@ let sendHelp = (sender_psid) => { //sends help message to user.
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I have some questions",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {

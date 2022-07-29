@@ -264,7 +264,7 @@ let sendFreshieFAQ = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Freshie FAQ",
+                        "text": "Freshies FAQ",
                         "buttons": [
                             {
                                 "type": "postback",
