@@ -182,9 +182,9 @@ let sendOldiesFAQ = (sender_psid) => {
                 }
             }
             await typingMimicry(sender_psid, 0);
-            await sendMessage(sender_psid, response);
+            await sendMessage(sender_psid, {"text": "debug: Oldies FAQ"});
             await typingMimicry(sender_psid, 1);
-            
+
             resolve("oldies faq handled");
         } catch (e) {
             reject(e);

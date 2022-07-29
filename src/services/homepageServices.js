@@ -21,7 +21,8 @@ let setupGreeting = (PAGE_ACCESS_TOKEN) => { // set up get started and persisten
                             {
                                 "type": "postback",
                                 "title": "BOT MANUAL",
-                                "payload": "USER_HELP"
+                                "payload": "USER_HELP",
+                                "webview_height_ratio": "full"
                             },
                             {
                                 "type": "web_url",
