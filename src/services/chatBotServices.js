@@ -2,7 +2,7 @@ import request from "request";
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
-let delay = (ms) => { return new Promise(resolve => setTimeout(resolve, ms)); }
+let delay = (ms) => { return new Promise(resolve => setTimeout(resolve, ms)); };
 
 // send a default message to the user
 let sendDefaultMessage = (sender_psid) => {
@@ -108,6 +108,7 @@ let sendFAQ = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
+                        "text": "Here are some questions that I can answer for you:",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -125,8 +126,8 @@ let sendFAQ = (sender_psid) => {
             };
 
             await typingMimicry(sender_psid, 0);
-            await sendMessage(sender_psid, {"text" : "debug: sendFAQ"});
             await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
 
             resolve("USER_FAQ handled!");
 
