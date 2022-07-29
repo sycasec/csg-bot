@@ -137,10 +137,10 @@ let sendFAQ = (sender_psid) => {
     });
 };
 
-let sendOldiesFAQ = (sender_psid) => {
+let sendOldiesFAQ = (sender_psid, action) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = {
+            let response1 = {
                 "attachment": {
                     "type": "template",
                     "payload": {
@@ -159,15 +159,45 @@ let sendOldiesFAQ = (sender_psid) => {
                             },
                             {
                                 "type": "postback",
-                                "title": "🔙 back",
-                                "payload": "USER_FAQ"
+                                "title": "more",
+                                "payload": "OLDIES_MORE_FAQ"
                             }
                         ]
                     }
                 }
             }
+
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": "Oldies more FAQ",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Enlistment == Enrollment ? 🤔",
+                                "payload": "OLDIES_ENLISTMENT"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Couldn't Pre-enlist 😞",
+                                "payload": "OLDIES_COULD_NOT_ENLIST"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Check Enrollment Status? 📋",
+                                "payload": "OLDIES_ENROLLMENT_STATUS"
+                            },
+                        ]
+                    }
+                }
+            }
+
+            let responses = [response1, response2];
+
             await typingMimicry(sender_psid, 0);
-            await sendMessage(sender_psid, response);
+            await sendMessage(sender_psid, responses[action]);
             await typingMimicry(sender_psid, 1);
             
             resolve("oldies faq handled");
@@ -176,6 +206,7 @@ let sendOldiesFAQ = (sender_psid) => {
         }
     });
 };
+
 
 let sendOldiesFAQAnswers = (sender_psid, answer) => {
     return new Promise(async (resolve, reject) => {

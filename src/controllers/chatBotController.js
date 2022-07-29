@@ -138,7 +138,10 @@ let handlePostback = async (sender_psid, received_postback) => {
       await chatBotServices.sendFAQ(sender_psid);
       break;
     case "OLDIES_FAQ":
-      await chatBotServices.sendOldiesFAQ(sender_psid);
+      await chatBotServices.sendOldiesFAQ(sender_psid, 0);
+      break;
+    case "OLDIES_MORE_FAQ":
+      await chatBotServices.sendOldiesFAQ(sender_psid, 1);
       break;
     case "OLDIES_ENROLLMENT_DATES":
       await chatBotServices.sendOldiesFAQAnswers(sender_psid, 0);
