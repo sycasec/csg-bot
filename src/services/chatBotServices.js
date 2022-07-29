@@ -164,16 +164,6 @@ let sendOldiesFAQ = (sender_psid) => {
                             },
                             {
                                 "type": "postback",
-                                "title": "Couldn't Pre-enlist 😞",
-                                "payload": "OLDIES_COULD_NOT_ENLIST"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Check Enrollment Status? 📋",
-                                "payload": "OLDIES_ENROLLMENT_STATUS"
-                            },
-                            {
-                                "type": "postback",
                                 "title": "🔙 back",
                                 "payload": "USER_FAQ"
                             }
@@ -182,9 +172,9 @@ let sendOldiesFAQ = (sender_psid) => {
                 }
             }
             await typingMimicry(sender_psid, 0);
-            await sendMessage(sender_psid, {"text": "debug: Oldies FAQ"});
+            await sendMessage(sender_psid, response);
             await typingMimicry(sender_psid, 1);
-
+            
             resolve("oldies faq handled");
         } catch (e) {
             reject(e);
