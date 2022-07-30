@@ -74,7 +74,7 @@ let sendUserWelcome = (sender_psid) => {
                                     },
                                     {
                                         'type': 'postback',
-                                        'title': '>man csg_bot 🤖',
+                                        'title': '>help csg-bot.exe 🤖',
                                         'payload': 'USER_HELP'
                                     }
                                 ]
@@ -380,8 +380,8 @@ let sendConcerns = (sender_psid) => {
                             },
                             {
                                 "type": "postback",
-                                "title": "I have some concerns",
-                                "payload": "USER_CONCERNS"
+                                "title": ">help csg-bot.exe 🤖",
+                                "payload": "USER_HELP"
                             },
                             {
                                 "type": "postback",
