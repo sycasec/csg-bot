@@ -112,7 +112,7 @@ let sendFAQ = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Freshie?",
+                                "title": "Freshie? 🙋",
                                 "payload": "FRESHIE_FAQ"
                             },
                             {
@@ -172,7 +172,7 @@ let sendOldiesFAQ = (sender_psid, action) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "❓ Oldies more FAQ ❓",
+                        "text": "❓ Oldies more FAQ 🦖",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -362,10 +362,44 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
 let sendConcerns = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try{
-            let response = {"text": "Concern collection is in development!"};
+            let response1 = {"text": "For any questions, your respective block representatives will be able to assist you. 😊"};
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": "Please message your concerns to the following contact points, and we will make sure it will be handled immediately. 😊\n"
+                              + "📌 UPCSG Internal Communications Officer:\nDunn Dexter Lahaylahay\n🔗 m.me/DunnDexterLahaylahay\n\n"
+                              + "📌 Office of the University Registrar:\n Asst. Prof. May Christina G. Bugash, M. Ed.\n 📧 our.upcebu@up.edu.ph\n📧 mgbugash@up.edu.ph\n📞 (032) 2328187\n\n"
+                              + "📌 Office of Student Affairs:\n Asst. Prof. Ma. Alena N. Macasil\n 📧 osa.upcebu@up.edu.ph\n📧 mnacasil@up.edu.ph \n📞 (032) 2328187\n\n",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "I still have some questions 🤔",
+                                "payload": "USER_FAQ"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "I have some concerns",
+                                "payload": "USER_CONCERNS"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "🔙 back",
+                                "payload": "FRESHIE_FAQ"
+                            }
+                        ]
+                    }
+                }
+            }
             
             await typingMimicry(sender_psid, 0);
-            await sendMessage(sender_psid, response);
+            await sendMessage(sender_psid, response1);
+            await typingMimicry(sender_psid, 0);
+            await delay(1000);
+            await sendMessage(sender_psid, response2);
+            await typingMimicry(sender_psid, 1);
+
             resolve("USER_CONCERNS handled!");
 
         } catch (e) {
