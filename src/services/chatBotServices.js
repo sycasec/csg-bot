@@ -108,7 +108,7 @@ let sendFAQ = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Here are some questions that I can answer for you:",
+                        "text": "Can I ask what komsai student are you? 🤔\n Are you a Freshie (first year)? 💁\nor a Fossil 😂 (sophies, juniors, seniors)",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -328,7 +328,7 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I still have some questions 🤔",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {
@@ -359,16 +359,70 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
     });
 }
 
-let sendConcerns = (sender_psid) => {
+let sendHooman = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {"text": "🤖 Loading your UPCSG Virtual Hooman™️, it might take a while..."};
+
+            await typingMimicry(sender_psid, 0);
+            await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
+
+            resolve("TALK_TO_HOOMAN handled!");
+        } catch (e) {
+            reject (e);
+        }
+    });
+}
+
+let sendConcerns = (sender_psid) =>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": "How would you like me to assist you? 😊",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Can I talk to hooman 😵‍💫",
+                                "payload": "TALK_TO_HOOMAN"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Additional contact points? 📞",
+                                "payload": "ADD_CONTACT_POINTS"
+                            }
+                        ]
+                    }
+                }
+            };
+
+            await typingMimicry(sender_psid, 0);
+            
+            await sendMessage(sender_psid, response);
+            await typingMimicry(sender_psid, 1);
+
+            resolve("USER_CONCERNS handled!");
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+let sendAdditionalContacts = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try{
-            let response1 = {"text": "For any questions, your respective block representatives will be able to assist you. 😊"};
+            let response1 = {"text": "For any other questions, your respective block representatives will be able to assist you. 😊"};
             let response2 = {
                 "attachment": {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Please message your concerns to the following contact points, and we will make sure it will be handled immediately. 😊\n"
+                        "text": "Please address your concerns to the following contact points, and we will make sure it will be handled immediately. 😊\n"
                               + "📌 UPCSG Internal Communications Officer:\nDunn Dexter Lahaylahay\n🔗 m.me/DunnDexterLahaylahay\n\n"
                               + "📌 Office of the University Registrar:\n Asst. Prof. May Christina G. Bugash, M. Ed.\n 📧 our.upcebu@up.edu.ph\n📧 mgbugash@up.edu.ph\n📞 (032) 2328187\n\n"
                               + "📌 Office of Student Affairs:\n Asst. Prof. Ma. Alena N. Macasil\n 📧 osa.upcebu@up.edu.ph\n📧 mnacasil@up.edu.ph \n📞 (032) 2328187\n\n",
@@ -386,7 +440,7 @@ let sendConcerns = (sender_psid) => {
                             {
                                 "type": "postback",
                                 "title": "🔙 back",
-                                "payload": "FRESHIE_FAQ"
+                                "payload": "USER_CONCERNS"
                             }
                         ]
                     }
@@ -400,7 +454,7 @@ let sendConcerns = (sender_psid) => {
             await sendMessage(sender_psid, response2);
             await typingMimicry(sender_psid, 1);
 
-            resolve("USER_CONCERNS handled!");
+            resolve("ADD_CONTACT_POINTS handled!");
 
         } catch (e) {
             reject(e);
@@ -486,6 +540,8 @@ module.exports = {
     sendFreshieFAQAnswers: sendFreshieFAQAnswers,
     sendOldiesFAQ: sendOldiesFAQ,
     sendOldiesFAQAnswers: sendOldiesFAQAnswers,
+    sendHooman: sendHooman,
+    sendAdditionalContacts: sendAdditionalContacts,
     sendConcerns: sendConcerns,
     sendMessage: sendMessage,
     typingMimicry: typingMimicry

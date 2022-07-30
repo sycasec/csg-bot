@@ -170,6 +170,12 @@ let handlePostback = async (sender_psid, received_postback) => {
     case "USER_CONCERNS":
       await chatBotServices.sendConcerns(sender_psid);
       break;
+    case "TALK_TO_HOOMAN":
+      await chatBotServices.sendHooman(sender_psid);
+      break;
+    case "ADD_CONTACT_POINTS":
+      await chatBotServices.sendAdditionalContacts(sender_psid);
+      break;
     default: 
       console.log("Uncaught error in switch case payload: " + payload);
   }
