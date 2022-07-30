@@ -269,7 +269,7 @@ let sendHelp = (sender_psid) => { //sends help message to user.
                 chatBotServices.typingMimicry(sender_psid, 0);
                 chatBotServices.sendMessage(sender_psid, responses[i]);
             }
-            await chatBotServices.typingMimicry(sender_psid, 1);
+            chatBotServices.typingMimicry(sender_psid, 1);
 
             resolve("USER_HELP handled!")
 
