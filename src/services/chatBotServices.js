@@ -14,7 +14,7 @@ let sendDefaultMessage = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "$CSG_BOT_NAME is not yet equipped to handle these stuffs D:",
+                        "text": "CaSy is not yet equipped to handle these stuffs D:",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -50,7 +50,7 @@ let sendUserWelcome = (sender_psid) => {
         try {
             let attachment_url = "https://csg-bot.herokuapp.com/images/hello_world.png";
 
-            let response1 = {"text": "Hello, I'm $CSG_BOT_NAME. I'm here to help you with your UPCSG related questions.\n\nCheck the menu bar (three stacked bars, lower right corner) for relevant links! 🤖"};
+            let response1 = {"text": "Hello, I'm CaSy. I'm here to help you with your UPCSG related questions.\n\nCheck the menu bar (three stacked bars, lower right corner) for relevant links! 🤖"};
             
             let response2 = {
                 "attachment": {
@@ -212,7 +212,7 @@ let sendOldiesFAQAnswers = (sender_psid, answer) => {
     return new Promise(async (resolve, reject) => {
         try {
             let text_responses = [
-                "------ Dates ----- : --Student No. ----\n"+
+                "Dates : Student No. \n"+
                 "📌 Aug 9,  Tue: 2019- earlier\n" +
                 "📌 Aug 10, Wed: 2020-\n" +
                 "📌 Aug 11, Thu: 2021-\n" +
@@ -243,7 +243,7 @@ let sendOldiesFAQAnswers = (sender_psid, answer) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I still have some questions 🤔",
+                                "title": "I have some questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {
@@ -292,7 +292,7 @@ let sendFreshieFAQ = (sender_psid) => {
                             },
                             {
                                 "type": "postback",
-                                "title": "FORM5 == FORM5A ?",
+                                "title": "FORM5 = FORM5A ?",
                                 "payload": "FRESHIE_FORM5"
                             }
                         ]
@@ -434,7 +434,7 @@ let sendAdditionalContacts = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "I still have some questions 🤔",
+                                "title": "I got questions 🤔",
                                 "payload": "USER_FAQ"
                             },
                             {

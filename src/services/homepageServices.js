@@ -94,7 +94,7 @@ let sendGreetingResponse = (sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "Hello Guilder! I'm $CSG-BOT-NAME, I'm here to help you with your CSG related queries.",
+                        "text": "Hello Guilder! I'm CaSy, I'm here to help you with your CSG related queries.",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -233,7 +233,7 @@ let sendHelp = (sender_psid) => { //sends help message to user.
     return new Promise((resolve, reject) => {
         try{
             let response1 = {
-                "text": "Hello Guilder! I'm $CSG-BOT-NAME, I'm here to help you with your CSG related queries.\n\n" +
+                "text": "Hello Guilder! I'm CaSy, I'm here to help you with your CSG related queries.\n\n" +
                 "I can help you with the following:\n" +
                 "1. Answer some of FAQ's\n" +
                 "2. Notify the officers about some of your concerns. (in development)\n" +
