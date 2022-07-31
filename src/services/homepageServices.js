@@ -237,7 +237,8 @@ let sendHelp = (sender_psid) => { //sends help message to user.
                 "I can help you with the following:\n" +
                 "1. Answer some of FAQ's\n" +
                 "2. Notify the officers about some of your concerns. (in development)\n" +
-                "3. You can check useful links in the menu! (it should look like three stacked bars)\n"
+                "3. You can check useful links in the menu! (it should look like three stacked bars)\n\n" +
+                "To talk to a hooman, please click the concerns button -> talk to a hooman 🤖"
             };
             let response2 = {
                 "text": "Please like and follow our page for the latest updates on CSG activities!"

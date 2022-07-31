@@ -50,7 +50,7 @@ let sendUserWelcome = (sender_psid) => {
         try {
             let attachment_url = "https://csg-bot.herokuapp.com/images/hello_world.png";
 
-            let response1 = {"text": "Hello, I'm $CSG_BOT_NAME. I'm here to help you with your UPCSG related questions."};
+            let response1 = {"text": "Hello, I'm $CSG_BOT_NAME. I'm here to help you with your UPCSG related questions.\n\nCheck the menu bar (three stacked bars, lower right corner) for relevant links! 🤖"};
             
             let response2 = {
                 "attachment": {
@@ -231,7 +231,7 @@ let sendOldiesFAQAnswers = (sender_psid, answer) => {
 
                 "That's okay. Students who want to enroll but have not pre-enrolled must speak with their College or Program Adviser. The student enrollment for the adviser's classes will be handled by the adviser. 😊",
 
-                "Students may check their enrollment status via the Student Center in SAIS. 😊"
+                "Students may check their enrollment status via the Student Center in SAIS. 😊\nif you need assistance with this, you can proceed to concerns -> talk to a hooman, or check the menu button (three stacked bars, should be on the lower right corner) for relevant links! 🤖"
             ];
 
             let response = {
@@ -364,7 +364,10 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
 let sendHooman = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = {"text": "🤖 Loading your UPCSG Virtual Hooman™️, it might take a while..."};
+            let response = {
+                "text": "🤖 Loading your UPCSG Virtual Hooman™️, it might take a while...\n\n" +
+                "(due to GPU constraints, humans are available from 10:00 am to 8:00pm, there is a random chance one will spawn at any time though.)"
+            };
 
             await typingMimicry(sender_psid, 0);
             await sendMessage(sender_psid, response);
