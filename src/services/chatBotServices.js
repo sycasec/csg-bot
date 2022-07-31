@@ -213,20 +213,21 @@ let sendOldiesFAQAnswers = (sender_psid, answer) => {
         try {
             let text_responses = [
                 "------ Dates ----- : --Student No. ----\n"+
-                "📌 Aug 1, Mon: 2019- earlier\n" +
-                "📌 Aug 2, Tue: 2020-\n" +
-                "📌 Aug 3, Wed: 2021-\n" +
-                "📌 Aug 4, Thu: ALL\n" +
-                "📌 Aug 5, Fri: ALL\n\n" +
+                "📌 Aug 9,  Tue: 2019- earlier\n" +
+                "📌 Aug 10, Wed: 2020-\n" +
+                "📌 Aug 11, Thu: 2021-\n" +
+                "📌 Aug 12, Fri: ALL\n" +
+                "📌 Aug 13, Sat: ALL\n\n" +
                 "---------------------------------------\n"+
                 "📌 Aug 8-12, Advanced First Year Registration\n\n" + 
                 "📌 Aug 30: Registration Period for Freshies, Graduating, and Graduate Students\n\n" +
                 "📌 Aug 31 - Sep 2: All Undergrads and Grad Students\n\n" +
-                "📌 Sep 1 - Sep 2: All students + Cross-reg, Non-Degree, Special Students",
+                "📌 Sep 1 - Sep 2: All students + Cross-reg, Non-Degree, Special Students\n\n" +
+                "✅ IMPORTANT: Pre-enlistment hours will be from 04:00 AM to 09:00 PM to allow for SAIS maintenance.",
 
                 "No forms nor further preparations are needed as long as you have pre-enlisted and resolved your Form 5A ineligibilities. 😊",
 
-                "True. The pre-enlisted/enrolled students have already been enrolled automatically. The 'Enrolled' tag will appear under Holds when a student checks their Student Center in SAIS. 😊",
+                "The pre-enlisted/enrolled students will be recorded as Enrolled in the system. The *Enrolled* tag will appear under [Holds] when a student checks their Student Center in SAIS. 😊",
 
                 "That's okay. Students who want to enroll but have not pre-enrolled must speak with their College or Program Adviser. The student enrollment for the adviser's classes will be handled by the adviser. 😊",
 
