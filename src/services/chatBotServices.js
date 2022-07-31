@@ -64,7 +64,7 @@ let sendUserWelcome = (sender_psid) => {
                             "buttons": [
                                     {
                                         'type': 'postback',
-                                        'title': 'I have some questions 🤔',
+                                        'title': 'I have questions 🤔',
                                         'payload': 'USER_FAQ'
                                     },
                                     {
@@ -112,7 +112,7 @@ let sendFAQ = (sender_psid) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Freshie? 🙋",
+                                "title": "Freshie 🙋",
                                 "payload": "FRESHIE_FAQ"
                             },
                             {
@@ -176,7 +176,7 @@ let sendOldiesFAQ = (sender_psid, action) => {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "🤔 Enlistment == Enrollment ?",
+                                "title": "🤔 Enlisted = Enrolled ?",
                                 "payload": "OLDIES_ENLISTMENT"
                             },
                             {
@@ -186,7 +186,7 @@ let sendOldiesFAQ = (sender_psid, action) => {
                             },
                             {
                                 "type": "postback",
-                                "title": "Check Enrollment Status? 📋",
+                                "title": "Enrollment Status? 📋",
                                 "payload": "OLDIES_ENROLLMENT_STATUS"
                             },
                         ]
@@ -212,12 +212,13 @@ let sendOldiesFAQAnswers = (sender_psid, answer) => {
     return new Promise(async (resolve, reject) => {
         try {
             let text_responses = [
+                "------ Dates ----- : --Student No. ----\n"+
                 "📌 Aug 1, Mon: 2019- earlier\n" +
                 "📌 Aug 2, Tue: 2020-\n" +
-                "📌 Aug 3, Wed | 2021-\n" +
-                "📌 Aug 4, Thu | ALL\n" +
-                "📌 Aug 5, Fri | ALL\n\n" +
-                "--------------------\n"+
+                "📌 Aug 3, Wed: 2021-\n" +
+                "📌 Aug 4, Thu: ALL\n" +
+                "📌 Aug 5, Fri: ALL\n\n" +
+                "---------------------------------------\n"+
                 "📌 Aug 8-12, Advanced First Year Registration\n\n" + 
                 "📌 Aug 30: Registration Period for Freshies, Graduating, and Graduate Students\n\n" +
                 "📌 Aug 31 - Sep 2: All Undergrads and Grad Students\n\n" +

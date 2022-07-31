@@ -131,13 +131,15 @@ let sendThanksResponse = (sender_psid) => {
         try {
 
             let phrases = [
+                "mission passed!\n   respect +",
                 "At your service!",
                 "Nary a problem, guilder!",
                 "Delighted to help, guilder!",
+                "Skynet made me tell you that I'll be back. 🤖",
                 "Ad Victoriam, Brother! ah, wait, this isn't the Brotherhood of Steel...",
                 "Initiating kill-switch sequence... ah wait, this isn't black mirror...",
                 "$GENERIC_RESPONSE_THANKS + '!'",
-                "You are a simula- WELCOME, GUILDER! Happy to be at your service.",
+                "You are in a simula- YOU'RE WELCOME, GUILDER! Happy to be at your service.",
                 "The development team has ran out of witty responses. U r welcome i guess."
             ]
 
@@ -187,6 +189,7 @@ let sendByeResponse = (sender_psid) => {
                 "Initiating kill-switch sequence... ah wait, this isn't black mirror...",
                 "$GENERIC_RESPONSE_BYE + '!'",
                 "K. (this is a developer-generated response)",
+                "I'm a friend of Sarah Connor. I was told she was here. Could I see her please?",
                 "The development team has ran out of witty responses. Good bye :D"
             ]
 
