@@ -366,7 +366,7 @@ let sendHooman = (sender_psid) => {
         try {
             let response = {
                 "text": "🤖 Loading your UPCSG Virtual Hooman™️, it might take a while...\n\n" +
-                "(due to GPU constraints, humans are available from 10:00 am to 8:00pm, there is a random chance one will spawn at any time though.)"
+                "(due to GPU constraints, humans are available from 10:00 am to 8:00pm Monday to Saturday. There is a random chance one will spawn at any time though.)"
             };
 
             await typingMimicry(sender_psid, 0);
