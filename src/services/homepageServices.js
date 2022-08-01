@@ -33,7 +33,7 @@ let setupGreeting = (PAGE_ACCESS_TOKEN) => { // set up get started and persisten
                             {
                                 "type": "web_url",
                                 "title": "SAIS Pre-enlistment Guide",
-                                "url": "https://drive.google.com/file/d/1CdwWkYjgDeP6YWkMjWw-SHRvAdvsoeOo/view",
+                                "url": "https://www.facebook.com/125129614235966/posts/5323742894374586/?sfnsn=mo",
                                 "webview_height_ratio": "full"
                             },
                             {
