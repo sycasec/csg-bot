@@ -112,8 +112,7 @@ let handleMessage = async (sender_psid, received_message) => {
   } else if (entity.name === "wit$bye") {
     await homepageServices.sendByeResponse(sender_psid);
   } else {
-    console.log("Uncaught error in switch case entity: " + entity.name);
-    await chatBotServices.sendDefaultMessage(sender_psid);
+    console.log(received_message);
   }
 
 }
