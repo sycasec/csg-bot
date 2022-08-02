@@ -20,7 +20,7 @@ let setupGreeting = (PAGE_ACCESS_TOKEN) => { // set up get started and persisten
                         "call_to_actions": [
                             {
                                 "type": "postback",
-                                "title": "BOT MANUAL",
+                                "title": "Bot Manual",
                                 "payload": "USER_HELP",
                                 "webview_height_ratio": "full"
                             },

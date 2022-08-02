@@ -74,8 +74,8 @@ let sendUserWelcome = (sender_psid) => {
                                     },
                                     {
                                         'type': 'postback',
-                                        'title': '>help csg-bot.exe 🤖',
-                                        'payload': 'USER_HELP'
+                                        'title': 'Can I talk to Hooman 🤖',
+                                        'payload': 'TALK_TO_HOOMAN'
                                     }
                                 ]
                             }
