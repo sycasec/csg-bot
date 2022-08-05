@@ -294,6 +294,11 @@ let sendFreshieFAQ = (sender_psid) => {
                                 "type": "postback",
                                 "title": "FORM5 = FORM5A ?",
                                 "payload": "FRESHIE_FORM5"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Laptop Specs? 💻",
+                                "payload": "FRESHIE_LAPTOP_SPECS"
                             }
                         ]
                     }

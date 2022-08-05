@@ -171,6 +171,9 @@ let handlePostback = async (sender_psid, received_postback) => {
     case "FRESHIE_FORM5":
       await chatBotServices.sendFreshieFAQAnswers(sender_psid, 1);
       break;
+    case "FRESHIE_LAPTOP_SPECS":
+      await chatBotServices.sendFreshieFAQAnswers(sender_psid, 2);
+      break;
     case "USER_CONCERNS":
       await chatBotServices.sendConcerns(sender_psid);
       break;
