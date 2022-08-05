@@ -44,7 +44,7 @@ let setupGreeting = (PAGE_ACCESS_TOKEN) => { // set up get started and persisten
                             },
                             {
                                 "type": "postback",
-                                "title": "Restart this conversation",
+                                "title": "Talk to CaSy",
                                 "payload": "RESTART_CONVERSATION"
                             }
                         ]
