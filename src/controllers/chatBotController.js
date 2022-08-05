@@ -103,11 +103,12 @@ let handleMessage = async (sender_psid, received_message) => {
   // handle text message with NLP  YOU WERE HERE
   let entity = handleMessageEnt(received_message);
 
-  await chatBotServices.typingMimicry(sender_psid, 0);
-  await chatBotServices.typingMimicry(sender_psid, 2);
+  
 
   if (prev_postback == "TALK_TO_HOOMAN"){ return };
   
+  await chatBotServices.typingMimicry(sender_psid, 0);
+  await chatBotServices.typingMimicry(sender_psid, 2);
 
   if (entity.name === "wit$greetings") {
     await homepageServices.sendGreetingResponse(sender_psid);
