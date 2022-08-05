@@ -318,7 +318,10 @@ let sendFreshieFAQAnswers = (sender_psid, answer) => {
         try {
             let text_responses = [
                 "✅ IMPORTANT: Freshies advanced registration is on August 8-12.\nIf you haven't done this, that's okay. You can still register on August 30 up until September 2, 2022 for this A.Y. 😊",
+
                 "FORM 5A is a document that you can acquire and print from sais.up.edu.ph that lists all your enlisted classes for the term. It includes your class schedule, room assignment, instructors, and units enrolled. It also serves as your TEMPORARY FORM 5 prior to enrollment. 😊",
+
+                "Generally, there are no machine specification requirements for the entirety of the Computer Science Degree Program.\n\nIf you can browse Google and play videos on YouTube, your machine should be fine. 😊",
             ];
 
             let response = {

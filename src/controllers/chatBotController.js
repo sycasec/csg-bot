@@ -6,6 +6,7 @@ import homepageServices from '../services/homepageServices';
 
 const VERIFY_TOKEN = process.env.MSG_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
+var prev_postback = "";
 
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
@@ -105,6 +106,9 @@ let handleMessage = async (sender_psid, received_message) => {
   await chatBotServices.typingMimicry(sender_psid, 0);
   await chatBotServices.typingMimicry(sender_psid, 2);
 
+  if (prev_postback == "TALK_TO_HOOMAN"){ return };
+  
+
   if (entity.name === "wit$greetings") {
     await homepageServices.sendGreetingResponse(sender_psid);
   } else if (entity.name === "wit$thanks") {
@@ -119,10 +123,10 @@ let handleMessage = async (sender_psid, received_message) => {
 
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
-  let response;
   // Get the payload for the postback
   let payload = received_postback.payload;
   // Set the response based on the postback payload
+  prev_postback = payload
 
   await chatBotServices.typingMimicry(sender_psid, 1);
   switch(payload) {
